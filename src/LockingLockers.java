@@ -1,19 +1,18 @@
 public class LockingLockers {
     public static void main(String[] args){
-        boolean[] arr= new boolean[101];
-        int x;
-        for (x=1; x<=100; x++){
-            arr[x] = true;
-        }
-        for (x=2; x<=100; x++){
-            for (int i = x; i <=100; i++) {
-                arr[i] = !arr[i];
+            boolean[] arr= new boolean[100];
+            int x;
+            int i;
+            for (i = 0; i < arr.length; i++) {
+                for (x = i; x < arr.length; x += (i+1)) {
+                    arr[x] = !arr[x];
+                }
             }
-        }
-        for (x=0;x<arr.length; x++){
-            if (arr[x]){
-                System.out.println("Locker " +x+ " is open.");
+
+            for (i=0;i<arr.length; i++){
+                if (arr[i]){
+                    System.out.println("Locker " +(i+1)+ " is open.");
+                }
             }
         }
     }
-}
